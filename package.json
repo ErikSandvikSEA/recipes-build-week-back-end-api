@@ -1,0 +1,35 @@
+{
+	"name": "api",
+	"version": "1.0.0",
+	"description": "backend api for secret family recipes application",
+	"main": "index.js",
+	"scripts": {
+		"test": "cross-env DB_ENV=testing jest --watch --runInBand",
+		"server": "nodemon index.js",
+		"start": "node index.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/BW-Secret-Family-Recipes-2/api.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/BW-Secret-Family-Recipes-2/api/issues"
+	},
+	"homepage": "https://github.com/BW-Secret-Family-Recipes-2/api#readme",
+	"devDependencies": {
+		"jest": "^26.0.1",
+		"nodemon": "^2.0.4"
+	},
+	"dependencies": {
+		"cors": "^2.8.5",
+		"dotenv": "^8.2.0",
+		"express": "^4.17.1",
+		"helmet": "^3.23.1",
+		"knex": "^0.21.1",
+		"knex-cleaner": "^1.3.0",
+		"sqlite3": "^4.2.0"
+	}
+}
