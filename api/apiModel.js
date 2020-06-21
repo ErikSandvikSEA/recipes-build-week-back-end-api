@@ -1,4 +1,4 @@
-const db = require('../data/db-config.js')
+const db = require('../database/db-config.js')
 
 function find(tableName){
      return db(tableName)
@@ -8,6 +8,11 @@ function findById(tableName, id) {
      return db(tableName)
        .where({ id })
        .first();
+   }
+
+   function findByUsername(tableName, username) {
+     return db(tableName)
+       .where({ username })
    }
 
 // async function getByIdWithDetail(id){
@@ -39,5 +44,6 @@ module.exports = {
      find,
      add,
      findById,
+     findByUsername,
      // getByIdWithDetail
 }
