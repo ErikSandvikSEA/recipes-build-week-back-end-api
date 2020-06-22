@@ -22,15 +22,17 @@ router.post(
      //save the user to the database
      Model.add('users', credentials)
           .then(newUser => {
+               const token = createToken(newUser)
                res.status(201).json({
                     message: 'Successfully Registered!',
-                    newUser: newUser
+                    newUser: newUser,
+                    token
                })
           })
           .catch(err => {
                res.status(500).json({
                     message: 'Error occurred during registration',
-                    error: err
+                    error: err.message
                })
           })
 })

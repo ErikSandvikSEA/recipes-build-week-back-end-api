@@ -19,7 +19,7 @@ async function getUserByIdWithDetail(id){
      const recipes = await db('users')
           .where('users.id', id)
           .join('recipesList', 'recipesList.author', '=', 'users.username')
-          .select('recipes.title');
+          .select('recipesList.title');
 
      const users = await db('users')
           .where('users.id', id)
@@ -66,6 +66,17 @@ async function getRecipeDetailById(id){
      }
 }
 
+function addInstruction(newInstruction) {
+     return db('instructions')
+       .insert(newInstruction)
+       .then(([id]) => findById('instructions', id))
+   }
+   
+function addIngredient(newIngredient) {
+     return db('ingredients_list')
+       .insert(newIngredient)
+       .then(([id]) => findById('ingredients_list', id))
+   }
 
 function add(tableName, newEntity) {
      return db(tableName)
@@ -79,5 +90,7 @@ module.exports = {
      findById,
      findByUsername,
      getUserByIdWithDetail,
-     getRecipeDetailById
+     getRecipeDetailById,
+     addIngredient,
+     addInstruction
 }

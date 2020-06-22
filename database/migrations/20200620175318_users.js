@@ -23,12 +23,12 @@ exports.up = function(knex) {
         tbl.integer('step').notNullable()
         tbl.string('instruction_description', 256).notNullable().index()
         tbl.integer('recipe_id')
-          .references('recipes.id')
+          .references('recipesList.id')
           .onDelete('RESTRICT')
           .onUpdate('CASCADE')
         tbl
           .string('recipe_title')
-          .references('recipes.title')
+          .references('recipesList.title')
           .onDelete('RESTRICT')
           .onUpdate('CASCADE')
       })
@@ -47,7 +47,7 @@ exports.up = function(knex) {
         tbl.increments()
         tbl
           .string('recipe_title')
-          .references('recipes.title')
+          .references('recipesList.title')
           .onDelete('RESTRICT')
           .onUpdate('CASCADE')
         tbl
