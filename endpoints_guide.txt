@@ -1,0 +1,85 @@
+Authentication Endpoints
+
+
+POST - /api/auth/register
+* Request:
+{
+            "username": "tester user",
+            "email": "testeremail@emails.com",
+            "password": "password"
+}
+
+* Response:
+{
+    "message": "Successfully Registered!",
+    "newUser": {
+        "id": 2,
+        "username": "tester user",
+        "email": "testeremail@emails.com",
+        "password": "$2a$08$iEPjp.vMqk09TPK7fVuk3.cV3j19SaWLP4jsweokQC9kXthH7OMWC"
+    },
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoyLCJ1c2VybmFtZSI6InRlc3RlciB1c2VyIiwiaWF0IjoxNTkyODY2NjU2LCJleHAiOjE1OTI5NTMwNTZ9.Pc48nxex3K6sMqTJlrPoF4Qu3gI4UrKZ_b9Z19Cjatc"
+}
+
+POST - /api/auth/login
+*Request:
+{
+            "username": "tester user",
+            "email": "testeremail@emails.com",
+            "password": "password"
+}
+
+*Response
+{
+    "message": "Successfully Logged In!",
+    "user": {
+        "id": 2,
+        "username": "tester user",
+        "email": "testeremail@emails.com",
+        "password": "$2a$08$iEPjp.vMqk09TPK7fVuk3.cV3j19SaWLP4jsweokQC9kXthH7OMWC"
+    },
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoyLCJ1c2VybmFtZSI6InRlc3RlciB1c2VyIiwiaWF0IjoxNTkyODY2NjkyLCJleHAiOjE1OTI5NTMwOTJ9.jkq_5fpgJYdcmi7V2RbmtV_7tDcd_y_hNTZTkgqLyLs"
+}
+
+
+Add instructions
+POST - /api/recipes/instruction
+*Request
+{
+    "step": 1,
+    "instruction_description": "new step",
+    "recipe_id": 1,
+    "recipe_title": "Bowl of Cereal"
+}
+
+*Response
+{
+    "message": "Instruction successfully added!",
+    "addedInstruction": {
+        "id": 7,
+        "step": 1,
+        "instruction_description": "new step",
+        "recipe_id": 1,
+        "recipe_title": "Bowl of Cereal"
+    }
+}
+
+Add ingredients
+POST - /api/recipes/ingredient
+*Request
+{
+    "ingredient": "Potato",
+    "quantity_and_units": "2 Peeled Potatoes",
+    "recipe_title": "Bowl of Cereal"
+}
+
+*Response
+{
+    "message": "Ingredient successfully added!",
+    "addedIngredient": {
+        "id": 5,
+        "recipe_title": "Bowl of Cereal",
+        "ingredient": "Potato",
+        "quantity_and_units": "2 Peeled Potatoes"
+    }
+}
