@@ -10,11 +10,14 @@ const server = express()
 server.use(express.json())
 server.use(cors())
 
+
 server.get('/', (req, res) => {
      res.status(200).json({
-          server: 'Up and Running'
+          server: 'Up and Running',
      })
 })
+
+
 
 server.use(
      '/api/auth',
@@ -23,13 +26,13 @@ server.use(
 
 server.use(
      '/api/users',
-     restricted, 
+     // restricted, 
      usersRouter
 )
 
 server.use(
      '/api/recipes',
-     restricted,
+     // restricted,
      recipesRouter
 )
 
