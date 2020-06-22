@@ -15,23 +15,56 @@ function findById(tableName, id) {
        .where({ username })
    }
 
-// async function getByIdWithDetail(id){
-//      const resources = await db('project_line_items as li')
-//           .where('li.project_id', id)
-//           .join('resources', 'resources.id', '=', 'li.resource_id')
-//           .select('resources.name', 'resources.description');
+async function getUserByIdWithDetail(id){
+     const recipes = await db('users')
+          .where('users.id', id)
+          .join('recipesList', 'recipesList.author', '=', 'users.username')
+          .select('recipes.title');
 
-//      const project = await db('projects')
-//           .where('projects.id', id)
-//           .select('projects.id', 'projects.name', 'projects.description', 'projects.completed?')
+     const users = await db('users')
+          .where('users.id', id)
 
-//      return {
-//           id,
-//           name: project[0].name,
-//           description: project[0].description,
-//           resources
-//      }
-// }
+
+     return {
+          id,
+          username: users[0].username,
+          email: users[0].email,
+          password: users[0].password,
+          recipes
+     }
+}
+
+async function getRecipeDetailById(id){
+     const recipes = await db('recipesList')
+          .where('recipesList.id', id)
+
+
+     const instructions = await db('recipesList')
+          .where('recipesList.id', id)
+          .join('instructions', 'instructions.recipe_title', '=', 'recipesList.title')
+          .select('instructions.step', 'instructions.instruction_description')
+          .orderBy('instructions.step')
+
+     const categories = await db('recipesList')
+          .where('recipesList.id', id)
+          .join('categories', 'categories.category', '=', 'recipesList.category')
+          .select('categories.category')
+
+     const ingredients = await db('recipesList')
+          .where('recipesList.id', id)
+          .join('ingredients_list', 'ingredients_list.recipe_title', '=', 'recipesList.title')
+          .select('ingredients_list.ingredient')
+
+
+     return {
+          id,
+          title: recipes[0].title,
+          author: recipes[0].author,
+          instructions: instructions,
+          categories,
+          ingredients: ingredients,
+     }
+}
 
 
 function add(tableName, newEntity) {
@@ -45,5 +78,6 @@ module.exports = {
      add,
      findById,
      findByUsername,
-     // getByIdWithDetail
+     getUserByIdWithDetail,
+     getRecipeDetailById
 }
