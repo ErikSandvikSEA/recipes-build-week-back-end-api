@@ -83,3 +83,26 @@ POST - /api/recipes/ingredient
         "quantity_and_units": "2 Peeled Potatoes"
     }
 }
+
+Add recipe
+POST - /api/recipes
+*Request
+{
+    "title": "Baked Potato",
+    "author": "tester user",
+    "category_id": 2,
+    "category": "Lunch",
+    "author_id": 2
+}
+*Response
+{
+    "message": "Recipe Added!",
+    "newRecipe": {
+        "id": 3,
+        "title": "Baked Potato",
+        "category_id": 2,
+        "category": "Lunch",
+        "author_id": 2,
+        "author": "tester user"
+    }
+}
