@@ -1,22 +1,23 @@
+
 exports.seed = function (knex) {
   // 000-cleanup.js already cleaned out all tables
 
   const ingredients = [
     {
      //id: 1
-      name: 'Milk'
+    name: 'Milk'
     },
     {
       //id: 2
-      name: 'Cereal',
+    name: 'Cereal'
     },
     {
       //id: 3
-      name: 'Bread'
+    name: 'Bread'
     },
     {
       //id: 4
-      name: 'Butter'
+    name: 'Butter'
     }
   ];
 

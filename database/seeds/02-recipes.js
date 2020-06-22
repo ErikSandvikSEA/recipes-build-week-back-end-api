@@ -5,16 +5,18 @@ exports.seed = function (knex) {
     {
      //id: 1
       title: 'Bowl of Cereal',
-      author: 'sample user'
+      author: 'sample user',
+      category: 'Breakfast'
     },
     {
       //id: 2
       title: 'Buttered Toast',
-      author: 'sample user'
+      author: 'sample user',
+      category: 'Breakfast'
     }
   ];
 
-  return knex("recipes")
+  return knex("recipesList")
     .insert(recipes)
     .then(() => console.log("\n== Seed data for recipes table added. ==\n"));
 };

@@ -9,18 +9,26 @@ exports.up = function(knex) {
           tbl.string('password', 256).notNullable()
      })
       //--------------recipes--------------//
-      .createTable('recipes', tbl => {
+      .createTable('recipesList', tbl => {
         tbl.increments()
         tbl.string('title').notNullable().index()
+        tbl.integer('category_id').references('categories.id').onDelete('RESTRICT').onUpdate('CASCADE')
+        tbl.string('category').references('categories.category').onDelete('RESTRICT').onUpdate('CASCADE')
+        tbl.integer('author_id').references('users.id').onDelete('RESTRICT').onUpdate('CASCADE')
         tbl.string('author').references('users.name').onDelete('RESTRICT').onUpdate('CASCADE')
       })
       //--------------instructions--------------//
       .createTable('instructions', tbl => {
         tbl.increments()
+        tbl.integer('step').notNullable()
         tbl.string('instruction_description', 256).notNullable().index()
+        tbl.integer('recipe_id')
+          .references('recipes.id')
+          .onDelete('RESTRICT')
+          .onUpdate('CASCADE')
         tbl
           .string('recipe_title')
-          .references('recipes.name')
+          .references('recipes.title')
           .onDelete('RESTRICT')
           .onUpdate('CASCADE')
       })
@@ -29,7 +37,12 @@ exports.up = function(knex) {
         tbl.increments()
         tbl.string('name')
       })
-      //--------------recipe line items--------------//
+      //--------------categories--------------//
+      .createTable('categories', tbl => {
+        tbl.increments()
+        tbl.string('category')
+      })
+      //--------------ingredients list--------------//
       .createTable('ingredients_list', tbl => {
         tbl.increments()
         tbl
@@ -51,4 +64,9 @@ exports.up = function(knex) {
 exports.down = function(knex) {
   return knex.schema
   .dropTableIfExists('users')
+  .dropTableIfExists('recipesList')
+  .dropTableIfExists('ingredients')
+  .dropTableIfExists('ingredients_list')
+  .dropTableIfExists('categories')
+  .dropTableIfExists('instructions')
 };
