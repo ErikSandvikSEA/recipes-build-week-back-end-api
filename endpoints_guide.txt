@@ -106,3 +106,57 @@ POST - /api/recipes
         "author": "tester user"
     }
 }
+
+Fetch recipes
+GET - /api/recipes
+*Response
+{
+    "recipes": [
+        {
+            "id": 1,
+            "title": "Bowl of Cereal",
+            "category_id": null,
+            "category": "Breakfast",
+            "author_id": null,
+            "author": "sample user"
+        },
+        {
+            "id": 2,
+            "title": "Buttered Toast",
+            "category_id": null,
+            "category": "Breakfast",
+            "author_id": null,
+            "author": "sample user"
+        },
+        {
+            "id": 3,
+            "title": "Baked Potato",
+            "category_id": 2,
+            "category": "Lunch",
+            "author_id": 2,
+            "author": "tester user"
+        }
+    ],
+    "message": "Recipes successfully fetched!"
+}
+
+Fetch users
+GET - /api/users
+*Response
+{
+    "users": [
+        {
+            "id": 1,
+            "username": "sample user",
+            "email": "sample@user.com",
+            "password": "password"
+        },
+        {
+            "id": 2,
+            "username": "tester user",
+            "email": "testeremail@emails.com",
+            "password": "$2a$08$iEPjp.vMqk09TPK7fVuk3.cV3j19SaWLP4jsweokQC9kXthH7OMWC"
+        }
+    ],
+    "message": "Users successfully fetched"
+}
