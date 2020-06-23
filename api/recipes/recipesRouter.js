@@ -31,7 +31,7 @@ router.get(
                .then(recipe => {
                     res.status(200).json({
                          recipe: recipe,
-                         message:'Recipe succesfully fetched!'
+                         message:'Recipe successfully fetched!'
                     })
                })
                .catch(err => {
