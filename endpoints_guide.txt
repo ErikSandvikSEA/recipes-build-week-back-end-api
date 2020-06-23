@@ -1,6 +1,4 @@
 Authentication Endpoints
-
-
 POST - /api/auth/register
 * Request:
 {
@@ -41,106 +39,7 @@ POST - /api/auth/login
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoyLCJ1c2VybmFtZSI6InRlc3RlciB1c2VyIiwiaWF0IjoxNTkyODY2NjkyLCJleHAiOjE1OTI5NTMwOTJ9.jkq_5fpgJYdcmi7V2RbmtV_7tDcd_y_hNTZTkgqLyLs"
 }
 
-
-Add instructions
-POST - /api/recipes/instruction
-*Request
-{
-    "step": 1,
-    "instruction_description": "new step",
-    "recipe_id": 1,
-    "recipe_title": "Bowl of Cereal"
-}
-
-*Response
-{
-    "message": "Instruction successfully added!",
-    "addedInstruction": {
-        "id": 7,
-        "step": 1,
-        "instruction_description": "new step",
-        "recipe_id": 1,
-        "recipe_title": "Bowl of Cereal"
-    }
-}
-
-Add ingredients
-POST - /api/recipes/ingredient
-*Request
-{
-    "ingredient": "Potato",
-    "quantity_and_units": "2 Peeled Potatoes",
-    "recipe_title": "Bowl of Cereal"
-}
-
-*Response
-{
-    "message": "Ingredient successfully added!",
-    "addedIngredient": {
-        "id": 5,
-        "recipe_title": "Bowl of Cereal",
-        "ingredient": "Potato",
-        "quantity_and_units": "2 Peeled Potatoes"
-    }
-}
-
-Add recipe
-POST - /api/recipes
-*Request
-{
-    "title": "Baked Potato",
-    "author": "tester user",
-    "category_id": 2,
-    "category": "Lunch",
-    "author_id": 2
-}
-*Response
-{
-    "message": "Recipe Added!",
-    "newRecipe": {
-        "id": 3,
-        "title": "Baked Potato",
-        "category_id": 2,
-        "category": "Lunch",
-        "author_id": 2,
-        "author": "tester user"
-    }
-}
-
-Fetch recipes
-GET - /api/recipes
-*Response
-{
-    "recipes": [
-        {
-            "id": 1,
-            "title": "Bowl of Cereal",
-            "category_id": null,
-            "category": "Breakfast",
-            "author_id": null,
-            "author": "sample user"
-        },
-        {
-            "id": 2,
-            "title": "Buttered Toast",
-            "category_id": null,
-            "category": "Breakfast",
-            "author_id": null,
-            "author": "sample user"
-        },
-        {
-            "id": 3,
-            "title": "Baked Potato",
-            "category_id": 2,
-            "category": "Lunch",
-            "author_id": 2,
-            "author": "tester user"
-        }
-    ],
-    "message": "Recipes successfully fetched!"
-}
-
-Fetch users
+FETCH USERS LIST
 GET - /api/users
 *Response
 {
@@ -149,7 +48,7 @@ GET - /api/users
             "id": 1,
             "username": "sample user",
             "email": "sample@user.com",
-            "password": "password"
+            "password": "password" //This is just a built in password w/no token, most of them will appear like the tester user
         },
         {
             "id": 2,
@@ -159,4 +58,153 @@ GET - /api/users
         }
     ],
     "message": "Users successfully fetched"
+}
+
+FETCH USER W/DETAIL
+GET - /api/users/:id
+*Response
+{
+    "id": "1",
+    "username": "sample user",
+    "email": "sample@user.com",
+    "password": "password",
+    "recipes": [
+        {
+            "id": 1,
+            "username": "sample user",
+            "email": "sample@user.com",
+            "password": "password",
+            "title": "Bowl of Cereal",
+            "category": "Breakfast",
+            "instructions": "1.) Get ingredients. 2.) Pour cereal into bowl. 3.) Pour milk over cereal",
+            "ingredients": "1.) Milk, 2.) Cereal",
+            "user_id": 1,
+            "user": "sample user"
+        },
+        {
+            "id": 2,
+            "username": "sample user",
+            "email": "sample@user.com",
+            "password": "password",
+            "title": "Buttered Toast",
+            "category": "Breakfast",
+            "instructions": "1.) Get ingredients. 2.) Put bread in toaster. 3.) Spread butter on toast",
+            "ingredients": "1.) Bread. 2.) Butter.",
+            "user_id": 1,
+            "user": "sample user"
+        },
+        {
+            "id": 3,
+            "username": "sample user",
+            "email": "sample@user.com",
+            "password": "password",
+            "title": "Pop Tart",
+            "category": "Breakfast",
+            "instructions": "1.) Get ingredients. 2.) Remove wrapper 3.) Put Pop Tart in toaster.",
+            "ingredients": "1.) Pop Tart",
+            "user_id": 1,
+            "user": "sample user"
+        },
+        {
+            "id": 4,
+            "username": "sample user",
+            "email": "sample@user.com",
+            "password": "password",
+            "title": "Baked Potato",
+            "category": "Lunch",
+            "instructions": "1.) Wrap potato in foil. 2.) Place wrapped potato in oven. 3.) Add butter, bacon, & cheddar",
+            "ingredients": "1.) Potato. 2.) Aluminum foil. 3.) Butter. 4.) Bacon bits. 5.) Shredded cheddar.",
+            "user_id": 1,
+            "user": "sample user"
+        }
+    ]
+}
+
+ADD NEW RECIPE
+POST - /api/recipes/
+*Request
+{
+            "title": "Baked Potato",
+            "category": "Lunch",
+            "instructions": "1.) Wrap potato in foil. 2.) Place wrapped potato in oven. 3.) Add butter, bacon, & cheddar",
+            "ingredients": "1.) Potato. 2.) Aluminum foil. 3.) Butter. 4.) Bacon bits. 5.) Shredded cheddar.",
+            "user_id": 1, //MUST BE A NUMBER, not a string
+            "user": "sample user"
+}
+
+*Response
+{
+    "message": "Recipe Added!",
+    "newRecipe": {
+        "id": 4,
+        "title": "Baked Potato",
+        "category": "Lunch",
+        "instructions": "1.) Wrap potato in foil. 2.) Place wrapped potato in oven. 3.) Add butter, bacon, & cheddar",
+        "ingredients": "1.) Potato. 2.) Aluminum foil. 3.) Butter. 4.) Bacon bits. 5.) Shredded cheddar.",
+        "user_id": 1,
+        "user": "sample user"
+    }
+}
+
+
+Fetch recipes
+GET - /api/recipes
+*Response
+{
+    "recipes": [
+        {
+            "id": 1,
+            "title": "Bowl of Cereal",
+            "category": "Breakfast",
+            "instructions": "1.) Get ingredients. 2.) Pour cereal into bowl. 3.) Pour milk over cereal",
+            "ingredients": "1.) Milk, 2.) Cereal",
+            "user_id": 1,
+            "user": "sample user"
+        },
+        {
+            "id": 2,
+            "title": "Buttered Toast",
+            "category": "Breakfast",
+            "instructions": "1.) Get ingredients. 2.) Put bread in toaster. 3.) Spread butter on toast",
+            "ingredients": "1.) Bread. 2.) Butter.",
+            "user_id": 1,
+            "user": "sample user"
+        },
+        {
+            "id": 3,
+            "title": "Pop Tart",
+            "category": "Breakfast",
+            "instructions": "1.) Get ingredients. 2.) Remove wrapper 3.) Put Pop Tart in toaster.",
+            "ingredients": "1.) Pop Tart",
+            "user_id": 1,
+            "user": "sample user"
+        },
+        {
+            "id": 4,
+            "title": "Baked Potato",
+            "category": "Lunch",
+            "instructions": "1.) Wrap potato in foil. 2.) Place wrapped potato in oven. 3.) Add butter, bacon, & cheddar",
+            "ingredients": "1.) Potato. 2.) Aluminum foil. 3.) Butter. 4.) Bacon bits. 5.) Shredded cheddar.",
+            "user_id": 1,
+            "user": "sample user"
+        }
+    ],
+    "message": "Recipes successfully fetched!"
+}
+
+FETCH SPECIFIC RECIPE
+GET - /api/recipes/:id
+
+*Response
+{
+    "recipe": {
+        "id": 2,
+        "title": "Buttered Toast",
+        "category": "Breakfast",
+        "instructions": "1.) Get ingredients. 2.) Put bread in toaster. 3.) Spread butter on toast",
+        "ingredients": "1.) Bread. 2.) Butter.",
+        "user_id": 1,
+        "user": "sample user"
+    },
+    "message": "Recipe succesfully fetched!"
 }
