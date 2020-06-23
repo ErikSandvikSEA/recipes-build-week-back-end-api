@@ -1,4 +1,10 @@
 
+const bcryptjs = require('bcryptjs')
+const rounds = 8
+
+const samplePassword = bcryptjs.hashSync('samplePassword', rounds)
+
+
 exports.seed = function (knex) {
   // 000-cleanup.js already cleaned out all tables
 
@@ -6,7 +12,7 @@ exports.seed = function (knex) {
     {
       username: 'sample user',
       email: 'sample@user.com',
-      password: 'password'
+      password: samplePassword
     }
   ];
 

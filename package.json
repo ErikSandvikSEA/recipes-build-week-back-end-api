@@ -20,8 +20,10 @@
 	},
 	"homepage": "https://github.com/BW-Secret-Family-Recipes-2/api#readme",
 	"devDependencies": {
+		"cross-env": "^7.0.2",
 		"jest": "^26.0.1",
-		"nodemon": "^2.0.4"
+		"nodemon": "^2.0.4",
+		"supertest": "^4.0.2"
 	},
 	"dependencies": {
 		"bcryptjs": "^2.4.3",

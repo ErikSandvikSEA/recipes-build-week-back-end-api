@@ -74,8 +74,7 @@ router.post(
 function createToken(user){
      const payload = {
        subject: user.id,
-       username: user.username,
-       role: user.role,
+       username: user.username
      }
    
      const secret = constants.jwtSecret

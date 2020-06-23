@@ -4,8 +4,8 @@ exports.up = function(knex) {
        //--------------users--------------//
      .createTable('users', tbl => {
           tbl.increments()
-          tbl.string('username', 128).notNullable().unique().index()
-          tbl.string('email', 128).notNullable().unique()
+          tbl.string('username', 256).notNullable().unique().index()
+          tbl.string('email', 256).notNullable().unique()
           tbl.string('password', 256).notNullable()
      })
       //--------------recipes--------------//
@@ -13,8 +13,8 @@ exports.up = function(knex) {
         tbl.increments()
         tbl.string('title').notNullable().index()
         tbl.string('category')
-        tbl.text('instructions', 1200)
-        tbl.text('ingredients', 1200)
+        tbl.text('instructions')
+        tbl.text('ingredients')
         tbl.integer('user_id').references('users.id').onDelete('RESTRICT').onUpdate('CASCADE')
         tbl.string('user').references('users.name').onDelete('RESTRICT').onUpdate('CASCADE')
 
