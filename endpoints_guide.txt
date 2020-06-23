@@ -208,3 +208,46 @@ GET - /api/recipes/:id
     },
     "message": "Recipe succesfully fetched!"
 }
+
+
+EDIT EXISTING RECIPE
+PUT - /api/recipes/:id
+*Request
+{
+            "title": "Bowl of Cheerios",
+            "category": "Breakfast!",
+            "instructions": "1.) Get ingredients. 2.) Pour cereal into bowl. 3.) Pour milk over cereal",
+            "ingredients": "1.) Milk, 2.) Cereal",
+            "user_id": 1,
+            "user": "sample user"
+}
+
+*Response
+{
+    "message": "Recipe successfully updated!",
+    "updatedRecipe": {
+        "id": 1,
+        "title": "Bowl of Cheerios",
+        "category": "Breakfast!",
+        "instructions": "1.) Get ingredients. 2.) Pour cereal into bowl. 3.) Pour milk over cereal",
+        "ingredients": "1.) Milk, 2.) Cereal",
+        "user_id": 1,
+        "user": "sample user"
+    }
+}
+
+DELETE EXISTING RECIPE
+DELETE - /api/recipes/:id
+*Response
+{
+    "message": "Successfully deleted",
+    "deletedRecipe": {
+        "id": 5,
+        "title": "Cup of Coffee",
+        "category": "Breakfast",
+        "instructions": "1.) Get ingredients. 2.) Pour hot water over coffee in filter. 3.) Allow cooling",
+        "ingredients": "1.) Ground coffee, 2.) Filters",
+        "user_id": 1,
+        "user": "sample user"
+    }
+}

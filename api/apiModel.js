@@ -10,6 +10,11 @@ function findById(tableName, id) {
        .first();
    }
 
+   function findRecipeById(id){
+        return db
+          .from()
+   }
+
    function findByUsername(tableName, username) {
      return db(tableName)
        .where({ username })
@@ -86,12 +91,32 @@ function add(tableName, newEntity) {
        .then(([id]) => findById(tableName, id))
    }
 
+function updateRecipe(updatedEntity, id){
+     return db('recipesList')
+          .where({id})
+          .update(updatedEntity)
+                    .then(() => {
+                         return findById('recipesList', id)
+                    })
+                    .catch(err => {
+                         console.log(err)
+                    })
+}
+
+function deleteRecipe(id){
+     return db('recipesList')
+          .where({id})
+          .del()
+}
+
 module.exports = {
      find,
      add,
+     updateRecipe,
      findById,
      findByUsername,
      getUserByIdWithDetail,
+     deleteRecipe
      // getRecipeDetailById,
      // addIngredient,
      // addInstruction

@@ -26,7 +26,7 @@ server.use(
 
 server.use(
      '/api/users',
-     // restricted, 
+     restricted, 
      usersRouter
 )
 
