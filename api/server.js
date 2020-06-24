@@ -32,7 +32,7 @@ server.use(
 
 server.use(
      '/api/recipes',
-     // restricted,
+     restricted,
      recipesRouter
 )
 
